@@ -33,10 +33,10 @@ vim.api.nvim_create_autocmd("TermEnter", {
         vim.keymap.set('t', ';prb', 'pnpm run build', { buffer = true })
 
         -- git
-        vim.keymap.set('t', ';gs', 'git status', { buffer = true })
-        vim.keymap.set('t', ';gd', 'git diff', { buffer = true })
-        vim.keymap.set('t', ';ga', 'git add .', { buffer = true })
-        vim.keymap.set('t', ';gc', 'git commit -m ""<Left>', { buffer = true })
+        -- vim.keymap.set('t', ';gs', 'git status', { buffer = true })
+        -- vim.keymap.set('t', ';gd', 'git diff', { buffer = true })
+        -- vim.keymap.set('t', ';ga', 'git add .', { buffer = true })
+        -- vim.keymap.set('t', ';gc', 'git commit -m ""<Left>', { buffer = true })
 
         -- clj
         vim.keymap.set('t', ';scw', 'npx shadow-cljs watch app', { buffer = true })
@@ -45,7 +45,7 @@ vim.api.nvim_create_autocmd("TermEnter", {
         -- utils
         vim.keymap.set('t', ';ap', 'sudo apt update', { buffer = true })
         vim.keymap.set('t', ';ag', 'sudo apt upgrade', { buffer = true })
-        vim.keymap.set('t', ';tr', 'tree -I node_modules', { buffer = true })
+        vim.keymap.set('t', ';tr', 'tree -Ih node_modules', { buffer = true })
     end
 })
 
