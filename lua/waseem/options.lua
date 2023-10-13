@@ -9,7 +9,7 @@ vim.o.splitright = true
 
 vim.wo.number = true
 vim.wo.relativenumber = true
-vim.wo.cursorline = true
+vim.wo.cursorline = false
 
 vim.wo.signcolumn = 'yes'
 vim.o.completeopt = 'menuone,noselect'
@@ -17,19 +17,19 @@ vim.o.termguicolors = true
 
 vim.o.mouse = ''
 
--- vim.o.clipboard = 'unnamedplus'
-vim.g.clipboard = {
-    name = 'WslClipboard',
-    copy = {
-        ['+'] = 'clip.exe',
-        ['*'] = 'clip.exe',
-    },
-    paste = {
-        ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-        ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-    },
-    cache_enabled = 0,
-}
+vim.opt.clipboard = 'unnamed'
+-- vim.g.clipboard = {
+--     name = 'WslClipboard',
+--     copy = {
+--         ['+'] = 'clip.exe',
+--         ['*'] = 'clip.exe',
+--     },
+--     paste = {
+--         ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+--         ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+--     },
+--     cache_enabled = 0,
+-- }
 
 
 -- FROM KICKSTART --

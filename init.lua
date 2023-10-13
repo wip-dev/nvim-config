@@ -108,31 +108,9 @@ require('lazy').setup({
         'nvim-treesitter/nvim-treesitter',
         dependencies = {
             'nvim-treesitter/nvim-treesitter-textobjects',
-            'HiPhish/rainbow-delimiters.nvim'
         },
         build = ':TSUpdate',
         config = function()
-            local rainbow_delimiters = require 'rainbow-delimiters'
-
-            vim.g.rainbow_delimiters = {
-                strategy = {
-                    [''] = rainbow_delimiters.strategy['global'],
-                    vim = rainbow_delimiters.strategy['local'],
-                },
-                query = {
-                    [''] = 'rainbow-delimiters',
-                    lua = 'rainbow-blocks',
-                },
-                highlight = {
-                    'RainbowDelimiterRed',
-                    'RainbowDelimiterYellow',
-                    'RainbowDelimiterBlue',
-                    'RainbowDelimiterOrange',
-                    'RainbowDelimiterGreen',
-                    'RainbowDelimiterViolet',
-                    'RainbowDelimiterCyan',
-                },
-            }
         end
     },
     {
@@ -200,7 +178,22 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 -- TREESITTER SETUP --
 
 require('nvim-treesitter.configs').setup {
-    ensure_installed = { 'clojure', 'javascript', 'lua', 'python', 'r', 'svelte', 'tsx', 'typescript', 'vimdoc', 'vim' },
+    modules = {},
+    sync_install = false,
+    ignore_install = {},
+    ensure_installed = {
+        -- 'clojure',
+        -- 'javascript',
+        -- 'python',
+        -- 'svelte',
+        -- 'tsx',
+        -- 'typescript',
+        'lua',
+        'r',
+        'vimdoc',
+        'vim',
+        'go'
+    },
     auto_install = false,
 
     highlight = { enable = true },
@@ -302,21 +295,17 @@ local on_attach = function(_, bufnr)
     nmap('<leader>f', vim.cmd.Format, '[F]ormat')
 end
 
--- Enable the following language servers
---  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
---
---  Add any additional override configuration in the following tables. They will be passed to
---  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
     -- clangd = {},
     -- gopls = {},
     -- pyright = {},
     -- rust_analyzer = {},
+    -- svelte = {},
+    -- tsserver = {},
+    -- clojure_lsp = {},
+    -- cssls = {},
+    gopls = {},
     r_language_server = {},
-    svelte = {},
-    tsserver = {},
-    clojure_lsp = {},
-    cssls = {},
     lua_ls = {
         Lua = {
             workspace = { checkThirdParty = false },
@@ -398,4 +387,4 @@ cmp.setup {
 require("waseem.options")
 require("waseem.remap")
 require("waseem.r")
-require("waseem.clj")
+-- require("waseem.clj")

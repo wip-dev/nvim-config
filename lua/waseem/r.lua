@@ -21,6 +21,7 @@ local main_git_callback = function()
     vim.keymap.set('n', '<leader>gd', ":Git diff", { buffer = true })
     vim.keymap.set('n', '<leader>ga', ":Git add .", { buffer = true })
     vim.keymap.set('n', '<leader>gc', ":Git commit -m ''<Left>", { buffer = true })
+    vim.keymap.set('n', '<leader>gl', ":Git log<Enter>", { buffer = true })
     vim.keymap.set('n', '<leader>gps', ":Git push<Enter>", { buffer = true })
     vim.keymap.set('n', '<leader>gpl', ":Git pull<Enter>", { buffer = true })
 end
