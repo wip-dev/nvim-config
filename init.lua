@@ -55,12 +55,12 @@ require('lazy').setup({
                 changedelete = { text = '~' },
             },
             on_attach = function(bufnr)
-                vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk,
-                    { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
-                vim.keymap.set('n', '<leader>gn', require('gitsigns').next_hunk,
-                    { buffer = bufnr, desc = '[G]o to [N]ext Hunk' })
-                vim.keymap.set('n', '<leader>ph', require('gitsigns').preview_hunk,
-                    { buffer = bufnr, desc = '[P]review [H]unk' })
+                vim.keymap.set('n', '<leader>hp', require('gitsigns').prev_hunk,
+                    { buffer = bufnr, desc = '[H]unks: go to [P]revious' })
+                vim.keymap.set('n', '<leader>hn', require('gitsigns').next_hunk,
+                    { buffer = bufnr, desc = '[H]unks: go to [N]ext' })
+                vim.keymap.set('n', '<leader>hl', require('gitsigns').preview_hunk,
+                    { buffer = bufnr, desc = '[H]unks: [L]ook at (preview) hunk' })
             end,
         },
     },
@@ -384,7 +384,7 @@ cmp.setup {
 }
 
 
-require("waseem.options")
-require("waseem.remap")
-require("waseem.r")
--- require("waseem.clj")
+require('waseem.options')
+require('waseem.remap')
+require('waseem.r')
+require('waseem.git')

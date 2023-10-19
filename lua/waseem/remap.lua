@@ -1,9 +1,5 @@
 local conf_path  = '/home/waseem/.config/nvim/'
 local init_path  = conf_path .. 'init.lua'
-local remap_path = conf_path .. 'lua/waseem/remap.lua'
-local opts_path  = conf_path .. 'lua/waseem/options.lua'
-local r_path     = conf_path .. 'lua/waseem/r.lua'
-local clj_path   = conf_path .. 'lua/waseem/clj.lua'
 
 -- From kickstart
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
@@ -15,11 +11,7 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open float
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- Config files ("vimrc") access
-vim.keymap.set('n', '<leader>rci', function() vim.cmd.edit(init_path) end, { desc = 'Edit vim[r][c]: [i]nit.lua' })
-vim.keymap.set('n', '<leader>rcm', function() vim.cmd.edit(remap_path) end, { desc = 'Edit vim[r][c]: re[m]ap.lua' })
-vim.keymap.set('n', '<leader>rcr', function() vim.cmd.edit(r_path) end, { desc = 'Edit vim[r][c]: [r].lua' })
-vim.keymap.set('n', '<leader>rcc', function() vim.cmd.edit(clj_path) end, { desc = 'Edit vim[r][c]: [c]lj.lua' })
-vim.keymap.set('n', '<leader>rco', function() vim.cmd.edit(opts_path) end, { desc = 'Edit vim[r][c]: [o]ptions.lua' })
+vim.keymap.set('n', '<leader>rc', function() vim.cmd.edit(init_path) end, { desc = 'Edit vim[r][c]' })
 
 -- Terminal abbreviations
 local term_group = vim.api.nvim_create_augroup("TermGroup", { clear = true })
