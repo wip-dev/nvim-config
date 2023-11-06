@@ -34,10 +34,12 @@ vim.api.nvim_create_autocmd("TermEnter", {
         vim.keymap.set('t', ';scw', 'npx shadow-cljs watch app', { buffer = true })
         vim.keymap.set('t', ';lr', 'lein run', { buffer = true })
 
-        -- utils
+        -- utils/other
         vim.keymap.set('t', ';ap', 'sudo apt update', { buffer = true })
         vim.keymap.set('t', ';ag', 'sudo apt upgrade', { buffer = true })
         vim.keymap.set('t', ';tr', 'tree -Ih node_modules', { buffer = true })
+        vim.keymap.set('t', ';hs', 'hugo server', { buffer = true })
+
     end
 })
 

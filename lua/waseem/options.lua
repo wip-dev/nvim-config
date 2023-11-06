@@ -9,7 +9,7 @@ vim.o.splitright = true
 
 vim.wo.number = true
 vim.wo.relativenumber = true
-vim.wo.cursorline = false
+vim.wo.cursorline = true
 
 vim.wo.signcolumn = 'yes'
 vim.o.completeopt = 'menuone,noselect'

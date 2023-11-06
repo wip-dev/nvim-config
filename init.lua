@@ -126,6 +126,9 @@ require('lazy').setup({
             'clojure-vim/vim-jack-in',
             'radenling/vim-dispatch-neovim'
         },
+    },
+    {
+        'fatih/vim-go'
     }
 }, {})
 
@@ -300,8 +303,10 @@ local servers = {
     -- gopls = {},
     -- pyright = {},
     -- rust_analyzer = {},
+    -- hls = {},
     svelte = {},
     tsserver = {},
+    html = {},
     -- clojure_lsp = {},
     -- cssls = {},
     gopls = {},
