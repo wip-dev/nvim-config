@@ -126,10 +126,10 @@ require('lazy').setup({
             'clojure-vim/vim-jack-in',
             'radenling/vim-dispatch-neovim'
         },
-    },
-    {
-        'fatih/vim-go'
     }
+    -- {
+    --     'fatih/vim-go'
+    -- }
 }, {})
 
 
