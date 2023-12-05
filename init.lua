@@ -65,11 +65,11 @@ require('lazy').setup({
         },
     },
     {
-        'ayu-theme/ayu-vim',
+        'morhetz/gruvbox',
         priority = 1000,
         config = function()
-            vim.g.ayucolor = 'dark'
-            vim.cmd.colorscheme 'ayu'
+            vim.g.gruvbox_contrast_dark = 'hard'
+            vim.cmd.colorscheme 'gruvbox'
         end,
     },
     {
@@ -77,9 +77,9 @@ require('lazy').setup({
         opts = {
             options = {
                 icons_enabled = false,
-                theme = 'ayu_dark',
-                component_separators = { left = '', right = '' },
-                section_separators = { left = '', right = '' },
+                theme = 'gruvbox_dark',
+                component_separators = { left = '', right = '' },
+                section_separators = { left = '', right = '' },
             },
         },
     },
