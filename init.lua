@@ -69,7 +69,12 @@ require('lazy').setup({
         priority = 1000,
         config = function()
             vim.g.gruvbox_contrast_dark = 'hard'
+            vim.g.gruvbox_transparent_bg = 1
             vim.cmd.colorscheme 'gruvbox'
+            vim.cmd('highlight Normal guibg=none')
+            -- vim.cmd('highlight NonText guibg=none')
+            -- vim.cmd('highlight Normal ctermbg=none')
+            -- vim.cmd('highlight NonText ctermbg=none')
         end,
     },
     {
