@@ -1,8 +1,6 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ','
 
--- LAZY.NVIM SETUP --
-
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
     vim.fn.system {
@@ -16,8 +14,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-
--- PLUGINS --
 
 require('lazy').setup({
     'tpope/vim-fugitive',
@@ -65,27 +61,32 @@ require('lazy').setup({
         },
     },
     {
-        'morhetz/gruvbox',
+        'catppuccin/nvim',
+        lazy = false,
         priority = 1000,
         config = function()
-            vim.g.gruvbox_contrast_dark = 'hard'
-            vim.g.gruvbox_transparent_bg = 1
-            vim.cmd.colorscheme 'gruvbox'
-            vim.cmd('highlight Normal guibg=none')
-            -- vim.cmd('highlight NonText guibg=none')
-            -- vim.cmd('highlight Normal ctermbg=none')
-            -- vim.cmd('highlight NonText ctermbg=none')
-        end,
+            require('catppuccin').setup({
+                flavour = "mocha",
+                no_italic = true,
+                custom_highlights = function(colors)
+                    return {
+                        Normal = { bg = colors.crust }
+                    }
+                end
+            })
+
+            vim.cmd.colorscheme "catppuccin"
+        end
     },
     {
         'nvim-lualine/lualine.nvim',
         opts = {
             options = {
                 icons_enabled = true,
-                theme = 'gruvbox_dark',
+                theme = 'catppuccin',
                 component_separators = { left = ' ', right = ' ' },
                 section_separators = { left = '', right = '' },
-            },
+            }
         },
     },
     {
