@@ -70,7 +70,7 @@ require('lazy').setup({
                 no_italic = true,
                 custom_highlights = function(colors)
                     return {
-                        Normal = { bg = colors.crust }
+                        -- Normal = { bg = colors.crust }
                     }
                 end
             })
