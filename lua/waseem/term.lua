@@ -15,7 +15,7 @@ vim.api.nvim_create_autocmd("TermEnter", {
         -- utils/other
         vim.keymap.set('t', ';ap', 'sudo apt update', { buffer = true })
         vim.keymap.set('t', ';ag', 'sudo apt upgrade', { buffer = true })
-        vim.keymap.set('t', ';tr', 'tree -Ih node_modules', { buffer = true })
+        vim.keymap.set('t', ';tr', 'tree -I node_modules --dirsfirst', { buffer = true })
         vim.keymap.set('t', ';hs', 'hugo server', { buffer = true })
         vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Back to Normal Mode' })
     end
