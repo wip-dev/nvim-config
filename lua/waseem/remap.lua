@@ -21,3 +21,46 @@ vim.keymap.set('n', '<leader>th', ':sp<Enter>:term<Enter>i', { desc = 'Start [Te
 vim.keymap.set('n', '<leader>l', ':set spell!<Enter>', { desc = 'Toggle spe[l]l checking' })
 vim.keymap.set('n', '<leader>ss', ':vs /tmp/scratch<Enter>', { desc = '[S]tart a [S]cratch buffer (tmp file)' })
 vim.keymap.set('i', '<C-s>', '<Esc>:w<Enter>a', { desc = 'Write/Save' })
+
+-- Git remaps
+local main_git_callback = function()
+    vim.keymap.set('n', '<leader>gs', ":Git<Enter>", { buffer = true })
+    vim.keymap.set('n', '<leader>gd', ":Git diff", { buffer = true })
+    vim.keymap.set('n', '<leader>gb', ":Git branch<Enter>", { buffer = true })
+    vim.keymap.set('n', '<leader>gl', ":Git log<Enter>", { buffer = true })
+    vim.keymap.set('n', '<leader>gps', ":Git push<Enter>", { buffer = true })
+    vim.keymap.set('n', '<leader>gpl', ":Git pull<Enter>", { buffer = true })
+    -- vim.keymap.set('n', '<leader>ga', ":Git add .", { buffer = true })
+    -- vim.keymap.set('n', '<leader>gc', ":Git commit<Enter>", { buffer = true })
+end
+
+local git_group = vim.api.nvim_create_augroup("GitGroup", { clear = true })
+vim.api.nvim_create_autocmd("BufEnter", {
+    group = git_group,
+    callback = main_git_callback
+})
+
+-- Terminal abbreviations
+local term_group = vim.api.nvim_create_augroup("TermGroup", { clear = true })
+vim.api.nvim_create_autocmd("TermEnter", {
+    group = term_group,
+    callback = function()
+        -- pnpm
+        vim.keymap.set('t', ';pi', 'pnpm install', { buffer = true })
+        vim.keymap.set('t', ';ps', 'pnpm start', { buffer = true })
+        vim.keymap.set('t', ';prd', 'pnpm run dev', { buffer = true })
+        vim.keymap.set('t', ';prb', 'pnpm run build', { buffer = true })
+
+        -- clj
+        vim.keymap.set('t', ';scw', 'npx shadow-cljs watch app', { buffer = true })
+        vim.keymap.set('t', ';lr', 'lein run', { buffer = true })
+
+        -- utils/other
+        vim.keymap.set('t', ';ap', 'sudo apt update', { buffer = true })
+        vim.keymap.set('t', ';ag', 'sudo apt upgrade', { buffer = true })
+        vim.keymap.set('t', ';tr', 'tree -I node_modules --dirsfirst', { buffer = true })
+        vim.keymap.set('t', ';hs', 'hugo server', { buffer = true })
+        vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Back to Normal Mode' })
+    end
+})
+

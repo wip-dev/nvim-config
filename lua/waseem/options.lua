@@ -32,8 +32,6 @@ vim.opt.clipboard = 'unnamed'
 -- }
 
 
--- FROM KICKSTART --
-
 -- Enable break indent
 vim.o.breakindent = true
 
@@ -48,4 +46,14 @@ vim.o.smartcase = true
 vim.o.updatetime = 250
 vim.o.timeout = true
 vim.o.timeoutlen = 300
+
+-- Highlight on yank
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+    callback = function()
+        vim.highlight.on_yank()
+    end,
+    group = highlight_group,
+    pattern = '*',
+})
 
