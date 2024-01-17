@@ -14,7 +14,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-
 require('lazy').setup({
     {
         'neovim/nvim-lspconfig',
@@ -24,6 +23,9 @@ require('lazy').setup({
             { 'j-hui/fidget.nvim',       tag = 'legacy', opts = {} },
             'folke/neodev.nvim',
         },
+        config = function()
+            require('plugins.lsp')
+        end
     },
     {
         'hrsh7th/nvim-cmp',
@@ -33,6 +35,9 @@ require('lazy').setup({
             'hrsh7th/cmp-nvim-lsp',
             'rafamadriz/friendly-snippets',
         },
+        config = function()
+            require('plugins.cmp')
+        end
     },
     {
         'lewis6991/gitsigns.nvim',
@@ -54,7 +59,14 @@ require('lazy').setup({
             end,
         },
     },
-    { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
+    {
+        'nvim-telescope/telescope.nvim',
+        branch = '0.1.x',
+        dependencies = { 'nvim-lua/plenary.nvim' },
+        config = function()
+            require('plugins.telescope')
+        end
+    },
     {
         'nvim-telescope/telescope-fzf-native.nvim',
         build = 'make',
@@ -69,13 +81,24 @@ require('lazy').setup({
         },
         build = ':TSUpdate',
         config = function()
+            require('plugins.treesitter')
         end
     },
-    'catppuccin/nvim',
-    'folke/which-key.nvim',
+    {
+        'catppuccin/nvim',
+        config = function()
+            require('plugins.theme')
+        end
+    },
+    {
+        'lukas-reineke/indent-blankline.nvim',
+        config = function()
+            require('plugins.indent-blankline')
+        end
+    },
+    { 'numToStr/Comment.nvim', opts = {} },
+    { 'folke/which-key.nvim',  opts = {} },
     'nvim-lualine/lualine.nvim',
-    'lukas-reineke/indent-blankline.nvim',
-    'numToStr/Comment.nvim',
     'tpope/vim-fugitive',
     'tpope/vim-surround',
     'fatih/vim-go',
@@ -100,10 +123,3 @@ require('lazy').setup({
 require('waseem.options')
 require('waseem.remap')
 -- require('waseem.r')
-
-require('plugins.indent-blankline')
-require('plugins.theme')
-require('plugins.telescope')
-require('plugins.treesitter')
-require('plugins.lsp')
-require('plugins.cmp')
