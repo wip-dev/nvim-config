@@ -22,10 +22,7 @@ require('lazy').setup({
             'williamboman/mason-lspconfig.nvim',
             { 'j-hui/fidget.nvim',       tag = 'legacy', opts = {} },
             'folke/neodev.nvim',
-        },
-        config = function()
-            require('plugins.lsp')
-        end
+        }
     },
     {
         'hrsh7th/nvim-cmp',
@@ -34,10 +31,7 @@ require('lazy').setup({
             'saadparwaiz1/cmp_luasnip',
             'hrsh7th/cmp-nvim-lsp',
             'rafamadriz/friendly-snippets',
-        },
-        config = function()
-            require('plugins.cmp')
-        end
+        }
     },
     {
         'lewis6991/gitsigns.nvim',
@@ -62,10 +56,7 @@ require('lazy').setup({
     {
         'nvim-telescope/telescope.nvim',
         branch = '0.1.x',
-        dependencies = { 'nvim-lua/plenary.nvim' },
-        config = function()
-            require('plugins.telescope')
-        end
+        dependencies = { 'nvim-lua/plenary.nvim' }
     },
     {
         'nvim-telescope/telescope-fzf-native.nvim',
@@ -80,25 +71,12 @@ require('lazy').setup({
             'nvim-treesitter/nvim-treesitter-textobjects',
         },
         build = ':TSUpdate',
-        config = function()
-            require('plugins.treesitter')
-        end
-    },
-    {
-        'catppuccin/nvim',
-        config = function()
-            require('plugins.theme')
-        end
-    },
-    {
-        'lukas-reineke/indent-blankline.nvim',
-        config = function()
-            require('plugins.indent-blankline')
-        end
     },
     { 'numToStr/Comment.nvim', opts = {} },
     { 'folke/which-key.nvim',  opts = {} },
+    'catppuccin/nvim',
     'nvim-lualine/lualine.nvim',
+    'lukas-reineke/indent-blankline.nvim',
     'tpope/vim-fugitive',
     'tpope/vim-surround',
     'fatih/vim-go',
@@ -123,3 +101,10 @@ require('lazy').setup({
 require('waseem.options')
 require('waseem.remap')
 -- require('waseem.r')
+
+require('plugins.lsp')
+require('plugins.cmp')
+require('plugins.telescope')
+require('plugins.treesitter')
+require('plugins.theme')
+require('plugins.indent-blankline')
