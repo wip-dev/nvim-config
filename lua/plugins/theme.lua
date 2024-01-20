@@ -1,11 +1,11 @@
 require('catppuccin').setup({
     flavour = "mocha",
     no_italic = true,
-    custom_highlights = function(colors)
-        return {
-            Normal = { bg = colors.crust }
-        }
-    end
+    -- custom_highlights = function(colors)
+    --     return {
+    --         Normal = { bg = colors.crust }
+    --     }
+    -- end
 })
 
 vim.cmd.colorscheme "catppuccin"
