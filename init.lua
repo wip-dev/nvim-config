@@ -79,7 +79,13 @@ require('lazy').setup({
     'lukas-reineke/indent-blankline.nvim',
     'tpope/vim-fugitive',
     'tpope/vim-surround',
-    'fatih/vim-go',
+    'christoomey/vim-tmux-navigator',
+    {
+        'fatih/vim-go',
+        config = function()
+            vim.g.go_doc_keywordprg_enabled = 0
+        end
+    },
     -- {
     --     'jalvesaq/Nvim-R',
     --     config = function()

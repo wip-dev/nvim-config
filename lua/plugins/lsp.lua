@@ -51,11 +51,16 @@ local mason_lspconfig = require 'mason-lspconfig'
 
 local handlers = {
     function(server_name) -- default handler (optional)
-        require("lspconfig")[server_name].setup {}
+        require("lspconfig")[server_name].setup {
+            on_attach = on_attach,
+            capabilities = capabilities,
+        }
     end,
     ["lua_ls"] = function()
         local lspconfig = require("lspconfig")
         lspconfig.lua_ls.setup {
+            on_attach = on_attach,
+            capabilities = capabilities,
             settings = {
                 Lua = {
                     diagnostics = {
@@ -78,7 +83,9 @@ local handlers = {
     end,
     ["templ"] = function() -- default handler (optional)
         vim.filetype.add({ extension = { templ = "templ" } })
-        require("lspconfig").templ.setup {}
+        require("lspconfig").templ.setup {
+            on_attach = on_attach,
+        }
     end,
 }
 
