@@ -39,26 +39,6 @@ local on_attach = function(_, bufnr)
     nmap('<leader>f', vim.cmd.Format, '[F]ormat')
 end
 
-local servers = {
-    tsserver = {},
-    html = {},
-    gopls = {},
-    lua_ls = {
-        Lua = {
-            workspace = { checkThirdParty = false },
-            telemetry = { enable = false },
-        },
-    },
-    tailwindcss = {},
-    -- pyright = {},
-    -- htmx = {},
-    -- hls = {},
-    -- svelte = {},
-    -- clojure_lsp = {},
-    -- cssls = {},
-    -- r_language_server = {},
-}
-
 -- Setup neovim lua configuration
 require('neodev').setup()
 
@@ -66,19 +46,87 @@ require('neodev').setup()
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
+
 local mason_lspconfig = require 'mason-lspconfig'
 
-mason_lspconfig.setup {
-    ensure_installed = vim.tbl_keys(servers),
-}
-
-mason_lspconfig.setup_handlers {
-    function(server_name)
-        require('lspconfig')[server_name].setup {
-            capabilities = capabilities,
-            on_attach = on_attach,
-            settings = servers[server_name],
+local handlers = {
+    function(server_name) -- default handler (optional)
+        require("lspconfig")[server_name].setup {}
+    end,
+    ["lua_ls"] = function()
+        local lspconfig = require("lspconfig")
+        lspconfig.lua_ls.setup {
+            settings = {
+                Lua = {
+                    diagnostics = {
+                        globals = { "vim" }
+                    },
+                    workspace = { checkThirdParty = false },
+                    telemetry = { enable = false },
+                }
+            }
         }
+    end,
+    ["tailwindcss"] = function()
+        local lspconfig = require("lspconfig")
+        lspconfig.tailwindcss.setup({
+            on_attach = on_attach,
+            capabilities = capabilities,
+            filetypes = { "templ", "astro", "javascript", "typescript", "react" },
+            init_options = { userLanguages = { templ = "html" } },
+        })
+    end,
+    ["templ"] = function() -- default handler (optional)
+        vim.filetype.add({ extension = { templ = "templ" } })
+        require("lspconfig").templ.setup {}
     end,
 }
 
+mason_lspconfig.setup {
+    ensure_installed = {
+        "tsserver",
+        "html",
+        "gopls",
+        "templ",
+        "lua_ls",
+        "tailwindcss",
+    },
+    handlers = handlers
+}
+
+-- local servers = {
+--     tsserver = {},
+--     html = {
+--         format = {
+--             templating = true,
+--             wrapLineLength = 80,
+--             wrapAttributes = "aligned-multiple",
+--         }
+--     },
+--     gopls = {},
+--     templ = {},
+--     lua_ls = {
+--         Lua = {
+--             workspace = { checkThirdParty = false },
+--             telemetry = { enable = false },
+--         },
+--     },
+--     tailwindcss = {},
+--     -- pyright = {},
+--     -- htmx = {},
+--     -- hls = {},
+--     -- svelte = {},
+--     -- clojure_lsp = {},
+--     -- cssls = {},
+--     -- r_language_server = {},
+-- }
+
+-- mason_lspconfig.setup_handlers {
+--     function(server_name)
+--         require('lspconfig')[server_name].setup {
+--             capabilities = capabilities,
+--             on_attach = on_attach,
+--             settings = servers[server_name],
+--         }
+--     end,
+-- }

@@ -7,6 +7,7 @@ require('nvim-treesitter.configs').setup {
     ensure_installed = {
         -- 'clojure',
         'go',
+        'templ',
         'javascript',
         'lua',
         'python',
