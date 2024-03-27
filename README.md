@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> This is now outdated. The latest version is in <https://github.com/wipdev-tech/dotfiles>
+
 # `wipdev`'s Neovim Configuration
 
 The basis for this config was
